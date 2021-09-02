@@ -17,3 +17,4 @@ const SocialNetwork = artifacts.require("SocialNetwork");
 module.exports = function(deployer) {
   deployer.deploy(SocialNetwork);
 };
+// NOW LETS CONTINUE WITH 2.0 CREATE POSTS IN socialnetwork.js y.sol.
