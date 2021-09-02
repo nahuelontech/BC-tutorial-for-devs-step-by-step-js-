@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 //1. THIS IS THE FIRST SC THAT WE´LL RUN
 contract SocialNetwork {
-    string public name;  //1.1  //From here he goes to migrations -> initial and deploy 
+    string public name;  //1.1  //From here he goes to migrations -> initial and deploy 1.2
     uint public postCount = 0;
     mapping(uint => Post) public posts;
 
