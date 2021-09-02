@@ -1,5 +1,5 @@
 pragma solidity >=0.4.21 <0.6.0;
-
+//This is simple a smart contract that allows us to put new ones on the blockchain.
 contract Migrations {
   address public owner;
   uint public last_completed_migration;
