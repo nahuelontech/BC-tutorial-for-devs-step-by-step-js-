@@ -102,7 +102,7 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
 //3.3.6. Copiamos lo de arriba y sustituimos valores, y testeamos uno a uno. asi como lo demsa
 //en lets, success, failure... y ya es testear a partir de min 1:25:00 aprox, y ya esta solo era la ultimaparte
 //ponemos en node -> truffle migrate --reset -> y se crea una copia del SC y se pone a la blockchain
-      //BUENO YA ACABO PENDEJOS , AHORA VAMOS CON EL FRONT END.
+      //BUENO YA ACABO PENDEJOS , AHORA VAMOS CON EL FRONT END. 4.0 en appjs
       const event = result.logs[0].args
       assert.equal(event.id.toNumber(), postCount.toNumber(), 'id is correct')
       assert.equal(event.content, 'This is my first post', 'content is correct')
