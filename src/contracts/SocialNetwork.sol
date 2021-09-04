@@ -49,7 +49,7 @@ contract SocialNetwork {
 //Para 3.2.6 ve a test
         emit PostCreated(postCount, _content, 0, msg.sender);
     }
-//3.3.2.
+//3.3.2. tenemos q poner payable para q acepte ether
     function tipPost(uint _id) public payable {
         // Make sure the id is valid 
         require(_id > 0 && _id <= postCount);
@@ -57,14 +57,15 @@ contract SocialNetwork {
         // THIS WILL CREATE A NEW COPY OF IT AND WE WILL UPDATE THESE VALUES(POST _POST..) AND THAT WON´T AFFECT THE POST ON THE BC
         //IT WON´T AFFECT IT UNTIL WE REASSIGN POSTS[_ID]  GO TO 3.3.3 NO
         Post memory _post = posts[_id];
-        // Fetch the author
+        // Fetch the author. Ojo tmb tenemos q decir q la address es pagable , asi q tmbien ve a struct y events y pon payable address
         address payable _author = _post.author;
-        // Pay the author by sending them Ether
+        // Pay the author by sending them Ether.     
         address(_author).transfer(msg.value);
         // Incremet the tip amount 3.3.4. (WE NEED TO ADD THE ACTUAL TIP THATS COMMING IN. BUT HOW DO WE DO THAT?
         //ES DIFICIL XQ LO Q TENEMOS ES UN ARG en function(uint _id), solo tenemos el ID del post q queremos pass in. So wheres the actuall tip?
         //wheres the crypto itself?we´re tipping this post with ether but how do u tell this function that u want to tip ETHER, theres no argument for the
         //amount. Solidity nos deja usar mas function metadata just like msg.sender de arriba to track the amount of ether they get sent in whenerver this functions is called
+        //ahora tenemos que poner from : author en el test (en should be rejected.).            PARA 3.3.5 crea un event llamado PostTipped y dsps vete a test  a it(`allows users to tip post´....
         _post.tipAmount = _post.tipAmount + msg.value;
         // Update the post 3.3.3. WE´LL UPDATE THE POST NOW BEFORE I MANIPULATE IT. SE UPDATEA DESPUES DE HAVER ECHO LO DE AUTOR,TIP AMOUNT...
         posts[_id] = _post;
