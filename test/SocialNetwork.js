@@ -74,6 +74,7 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
       // FAILURE: Post must have content
 //3.2.7.PONEMOS FAILURE PARA Q SE SEPA Q SI HACE ESO SERÁ RECHAZADO, como ves ponemos q si tiene contenido en blanco será rechazado
 //de primeras no fallará, pero x eso queremos crear un test donde falle asi que ve a .sol para continuar con la segunda parte
+//3.3.4.
       await socialNetwork.createPost('', { from: author }).should.be.rejected;
     })
 //////////////////////3.3 .The author has to pay more gas fee than the deployer, we can see that we have less eth in acc 0 and 1
@@ -90,21 +91,29 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
     it('allows users to tip posts', async () => {
       // Track the author balance before purchase
       let oldAuthorBalance
+      //Thats how u chenck de balance
       oldAuthorBalance = await web3.eth.getBalance(author)
       oldAuthorBalance = new web3.utils.BN(oldAuthorBalance)
-
+//3.3.5. Creo q es 3.4 ya pero bueno luego arreglo el desorden, lo de value es para no poner lo de wei y que así no tengamos q poner a cada rato muchos 0s-
+//PARA 3.3.6 VETE A SUCCES DE ABAJO
       result = await socialNetwork.tipPost(postCount, { from: tipper, value: web3.utils.toWei('1', 'Ether') })
 
       // SUCESS
+//3.3.6. Copiamos lo de arriba y sustituimos valores, y testeamos uno a uno. asi como lo demsa
+//en lets, success, failure... y ya es testear a partir de min 1:25:00 aprox, y ya esta solo era la ultimaparte
+//ponemos en node -> truffle migrate --reset -> y se crea una copia del SC y se pone a la blockchain
+      //BUENO YA ACABO PENDEJOS , AHORA VAMOS CON EL FRONT END.
       const event = result.logs[0].args
       assert.equal(event.id.toNumber(), postCount.toNumber(), 'id is correct')
       assert.equal(event.content, 'This is my first post', 'content is correct')
       assert.equal(event.tipAmount, '1000000000000000000', 'tip amount is correct')
       assert.equal(event.author, author, 'author is correct')
 
-      // Check that author received funds
+      // Check that author received funds. Thats how u chenck de balance
       let newAuthorBalance
+      
       newAuthorBalance = await web3.eth.getBalance(author)
+      
       newAuthorBalance = new web3.utils.BN(newAuthorBalance)
 
       let tipAmount
