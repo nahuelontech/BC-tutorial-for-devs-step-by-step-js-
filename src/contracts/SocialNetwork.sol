@@ -1,5 +1,4 @@
 pragma solidity ^0.5.0;
-//1. THIS IS THE FIRST SC THAT WE´LL RUN
 //3. WE WANT OUR CONTRACT to create posts, lists all the posts, and tip posts
 //GO TO SOCIALNETWORK.JS FOR 3.1.
 contract SocialNetwork {
