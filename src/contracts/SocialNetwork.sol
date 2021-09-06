@@ -1,6 +1,4 @@
 pragma solidity ^0.5.0;
-//3. WE WANT OUR CONTRACT to create posts, lists all the posts, and tip posts
-//GO TO SOCIALNETWORK.JS FOR 3.1.
 contract SocialNetwork {
     string public name;  //1.1  //From here he goes to migrations -> initial and deploy 1.2
 //3.2.1. We don´t wanna hardcode the  postcreated(sin lo de abajo se quedaba un código feo)
