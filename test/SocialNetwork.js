@@ -35,37 +35,25 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
     })//Ok once runned, we say that it passed the test.                  GO TO 3.0 IN SocialNetwork.sol
   })
 //_______________________________________________________________________________________________________________________________________________________________________________________________
-//3.1. HERE WE WILL TEST 3 EXAMPLES THAT DESCRIBE THE BEHAVIOUR
   describe('posts', async () => {
     let result, postCount
-
     before(async () => {
-//3.2.2.This is how u call a function in .sol. But we need to especify who the author is.
-//We write the addres from author calling it. It will also correspond to the msg.sender which is gonna
-//get saved as the author value inside of the post mapping. Bien ahora lets call that, by saying await and result
+//3.2.2 But we need to especify who the author is(from:author)
+//It will also correspond to the msg.sender which is gonna get saved as the author value inside of the post mapping. 
 //Y ojo en order to access result on down the line we´ll create a LET RESULT up
 //3.2.6 this result is gonna contain the info for the event itself that will allow us to verify the data from the post, u can go down below
       result = await socialNetwork.createPost('This is my first post', { from: author })
-//3.2.3 Ahora me quiero asegurar q el post ha sido creado.
-//Vale en resumen estas son las dos condiciones que vamos a check whenever it creates a post
-//PERO COMO LO CHECKEAMOS? GO TO 3.2.4
       postCount = await socialNetwork.postCount()
     })
-//3.2. Look also at .sol
     it('creates posts', async () => {
       // SUCESS
-//3.2.4 Vale , las dos condiciones de arriba antes estaban dentro de it, pero para checkear el postcount
-//ponemos esta(es como antes q lo puso arriba pa no repetir), una vez puesta la linea de codigo de abajo
-//nos vamos a truffle y ponemos truffle test y vemos que it passes
+//3.2.4 
 //So Now WE want to dig into the post and ensure that the values are set correctly; so we need to write some more coide
 //in order to do this. So events, that get triggered whenever we call´em     GO TO 3.2.5 IN .SOL event
       assert.equal(postCount, 1)
 //3.2.6 The logs is gonna contain the event'PostCreated'(u can see this in truffle)
 // the logs is an array. Ahora si lo testeamos con truffle test nos dirá los valroes inside the event
 // como el ID, el content, the tip ammount, and the author. Y podemos ver q esta todo correct
-//DESPUÉS YA PODEMOS PONER LOS OTROS VALORES COMO LOS 4 asserts DE ABAJO
-//LO SIGUIENTE Q HAREMOS SERÁ AÑADIR BEHAVIOUR TO THE FUNCTION CREATEPOST FROM SOL, WE WANNA ENSURE THAT THE POST ACTUALLY HAS
-//SOME CONTENT INSIDE OF IT, O sea no queremos q nadie spamee posts en blanco VES A 3.2.7
       const event = result.logs[0].args
       assert.equal(event.id.toNumber(), postCount.toNumber(), 'id is correct')
       assert.equal(event.content, 'This is my first post', 'content is correct')
