@@ -1,5 +1,4 @@
-//1.So, this is gonna create a new file that its gonna get run whenever we put a new SC on the BC
-//Truffle uses something called artifacts to get``const SocialNetwork´´, and the artifacts come from the files
+//1. Truffle uses something called artifacts to get``const SocialNetwork´´, and the artifacts come from the files
 //inside the abis directory(src), in this case from socialnetwork.json. Read the other migration
 
 //1.2 Now created the migration go to SocialNetwork.sol and put it on the ganashe personal BC -> TRUFFLE MIGRATE
