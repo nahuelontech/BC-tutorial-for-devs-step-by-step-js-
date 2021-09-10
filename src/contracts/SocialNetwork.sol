@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 contract SocialNetwork {
-    string public name;  //1.1  //From here he goes to migrations -> initial and deploy 1.2
+    string public name;  
 //3.2.1. We don´t wanna hardcode the  postcreated(sin lo de abajo se quedaba un código feo)
 //This will keep track of the number of posts that gets added to the mapping below.
     uint public postCount = 0;
