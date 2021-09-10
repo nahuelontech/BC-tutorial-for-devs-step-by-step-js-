@@ -38,8 +38,7 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
   describe('posts', async () => {
     let result, postCount
     before(async () => {
-//3.2.2 But we need to especify who the author is(from:author)
-//It will also correspond to the msg.sender which is gonna get saved as the author value inside of the post mapping. 
+//3.2.2 It will also correspond to the msg.sender which is gonna get saved as the author value inside of the post mapping. 
 //Y ojo en order to access result on down the line we´ll create a LET RESULT up
 //3.2.6 this result is gonna contain the info for the event itself that will allow us to verify the data from the post, u can go down below
       result = await socialNetwork.createPost('This is my first post', { from: author })
@@ -48,8 +47,7 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
     it('creates posts', async () => {
       // SUCESS
 //3.2.4 
-//So Now WE want to dig into the post and ensure that the values are set correctly; so we need to write some more coide
-//in order to do this. So events, that get triggered whenever we call´em     GO TO 3.2.5 IN .SOL event
+// So events, that get triggered whenever we call´em     GO TO 3.2.5 IN .SOL event
       assert.equal(postCount, 1)
 //3.2.6 The logs is gonna contain the event'PostCreated'(u can see this in truffle)
 // the logs is an array. Ahora si lo testeamos con truffle test nos dirá los valroes inside the event
